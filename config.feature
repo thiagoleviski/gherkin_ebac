@@ -1,44 +1,28 @@
 # language: pt
-Funcionalidade: Tela de cadastro - Checkout
+Funcionalidade: Configurar produto
 Como cliente da EBAC-SHOP
-Quero fazer concluir meu cadastro   
-Para finalizar minha compra
+Quero configurar meu produto de acordo com meu tamanho e gosto
+E escolher a quantidade
+Para depois inserir no carrinho
 
   Contexto: 
-    Dado que estou na tela de checkout
-    E quero concluir minha compra
-    E tenho que concluir meu cadastro
+    Dado que escolhi o produto que quero comprar na página da EBAC-SHOP
 
-  Cenário: Deve ser cadastrado com todos os dados obrigatórios, marcado com asteriscos
-    Quando preencho todos os campos obrigatórios
-    Então finalizo minha compra
+  Cenário: Seleções de cor, tamanho e quantidade devem ser obrigatórios
+    Quando eu escolho a cor "Blue" do produto
+    E escolho o tamanho "M" do produto
+    E escolho a quantidade "5" do produto
+    Então consigo adicionar minha compra ao carrinho
 
-  Esquema do Cenário: Não deve permitir campo e-mail com formato inválido. Sistema deve inserir uma mensagem de erro
-    Quando preencho meus dados obrigatórios
-    E uso um <email> válido
-    Então finalizo minha compra
-    E nenhuma mensagem de <erro> é mostrada
+  Cenário: Deve permitir apenas 10 produtos por venda
+    Quando eu escolho a cor "Red" do produto
+    E escolho o tamanho "XL" do produto
+    E escolho a quantidade "34" do produto
+    Então não conseguirei adicionar minha compra ao carrinho
 
-    Exemplos: 
-      | email            | erro                          |
-      | thiago@gmail.com |                               |
-      | thiago.gmail.com | "e-mail com formato inválido" |
-
-  Esquema do Cenário: Ao tentar cadastrar com campos vazios, deve exibir mensagem de alerta
-    Quando preencho meus dados obrigatórios como <nome>,<sobrenome>,<país>,<endereço>,<cidade>,<cep>,<telefone>,<email>
-    E algum destes dados está vazio
-    Então meu cadastro não é efetuado
-    E uma mensagem de <alerta> é mostrado
-
-    Exemplos: 
-      | nome   | sobrenome | país   | endereço | cidade   | cep       | telefone     | email            | alerta                              |
-      |        |           |        |          |          |           |              |                  | "favor preencher campo(s) vazio(s)" |
-      | Thiago | Teixeira  | Brasil | Rua X    | Campinas | 13000-000 | 1999999-9999 | thiago@gmail.com |                                     |
-      |        | Teixeira  | Brasil | Rua X    | Campinas | 13000-000 | 1999999-9999 | thiago@gmail.com | "favor preencher campo(s) vazio(s)" |
-      | Thiago |           | Brasil | Rua X    | Campinas | 13000-000 | 1999999-9999 | thiago@gmail.com | "favor preencher campo(s) vazio(s)" |
-      | Thiago | Teixeira  |        | Rua X    | Campinas | 13000-000 | 1999999-9999 | thiago@gmail.com | "favor preencher campo(s) vazio(s)" |
-      | Thiago | Teixeira  | Brasil |          | Campinas | 13000-000 | 1999999-9999 | thiago@gmail.com | "favor preencher campo(s) vazio(s)" |
-      | Thiago | Teixeira  | Brasil | Rua X    |          | 13000-000 | 1999999-9999 | thiago@gmail.com | "favor preencher campo(s) vazio(s)" |
-      | Thiago | Teixeira  | Brasil | Rua X    | Campinas |           | 1999999-9999 | thiago@gmail.com | "favor preencher campo(s) vazio(s)" |
-      | Thiago | Teixeira  | Brasil | Rua X    | Campinas | 13000-000 |              | thiago@gmail.com | "favor preencher campo(s) vazio(s)" |
-      | Thiago | Teixeira  | Brasil | Rua X    | Campinas | 13000-000 | 1999999-9999 |                  | "favor preencher campo(s) vazio(s)" |
+  Cenário: Quando eu clicar no botão “limpar” deve voltar ao estado original
+    Quando eu escolho a cor "Orange" do produto
+    E escolho o tamanho "L" do produto
+    E escolho a quantidade "3" do produto
+    E clico no botão "limpar"
+    Então as escolhas que fiz voltam para o estado inicial

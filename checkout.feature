@@ -1,29 +1,36 @@
 # language: pt
-Funcionalidade: Login na plataforma
+Funcionalidade: Tela de cadastro - Checkout
 Como cliente da EBAC-SHOP
-Quero fazer o login (autenticação) na plataforma  
-Para visualizar meus pedidos
+Quero fazer concluir meu cadastro   
+Para finalizar minha compra
 
   Contexto: 
-    Dado que estou na tela de login na plataforma da EBAC-SHOP
+    Dado que estou na tela de checkout
+    E quero concluir minha compra
+    E tenho que concluir meu cadastro
 
-  Cenário: Ao inserir dados válidos deve ser direcionado para a tela de checkout
-    Quando eu insiro um usuário ou email válido
-    E uma senha válida
-    Então sou redirecionado à tela de checkout
+  Cenário: Deve ser cadastrado com todos os dados obrigatórios, marcado com asteriscos
+    Quando preencho todos os campos obrigatórios
+    Então finalizo minha compra
 
-  Esquema do Cenário: Ao inserir um dos campos inválidos deve exibir uma mensagem de alerta “Usuário ou senha inválidos”
-    Quando eu insiro um <usuario> ou <email>
-    E uma <senha>
-    Então uma <ação> é executada
+  Cenário: Não deve permitir campo e-mail com formato inválido. Sistema deve inserir uma mensagem de erro
+    Quando preencho meus dados
+    E o campo e-mail está com um formato inválido
+    Então meu cadastro não é efetuado
+    E uma mensagem de erro é exibida
 
-    Exemplos:
-      | usuario | email            | senha   | ação                         |
-      | thiago  |                  | abc@123 | tela de checkout             |
-      |         | thiago@gmail.com | abc@123 | tela de checkout             |
-      | Thiago  |                  | abc@123 | "Usuário ou senha inválidos" |
-      | thiago  |                  | Abc@123 | "Usuário ou senha inválidos" |
-      |         | Thiago@gmail.com | abc@123 | "Usuário ou senha inválidos" |
-      |         | thiago@gmail.com | Abc@123 | "Usuário ou senha inválidos" |
-      | thiago  |                  |         | "Usuário ou senha inválidos" |
-      |         | thiago@gmail.com |         | "Usuário ou senha inválidos" |
+  Cenário: Ao tentar cadastrar com campos vazios, deve exibir mensagem de alerta
+    Quando preencho meus dados
+    E algum destes dados está vazio
+    Então meu cadastro não é efetuado
+    E uma mensagem de alerta é exibida
+
+  Esquema do Cenário: Validação de cadastros inválidos
+    Quando preencho meus dados como o <email>
+    Então meu cadastro não é efetuado
+    E uma <mensagem> de erro é exibida
+
+    Exemplos: 
+      | email              | mensagem                     |
+      | xxxx@@gmail.org.br | mensagem de erro é exibida   |
+      |                    | mensagem de alerta é exibida |
