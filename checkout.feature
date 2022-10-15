@@ -1,19 +1,18 @@
 # language: pt
 Funcionalidade: Tela de cadastro - Checkout
 Como cliente da EBAC-SHOP
-Quero fazer concluir meu cadastro   
+Quero concluir meu cadastro   
 Para finalizar minha compra
 
   Contexto: 
     Dado que estou na tela de checkout
-    E quero concluir minha compra
-    E tenho que concluir meu cadastro
+    E para concluir minha compra tenho que concluir meu cadastro
 
-  Cenário: Deve ser cadastrado com todos os dados obrigatórios, marcado com asteriscos
+  Cenário: Deve ser cadastrado com todos os dados obrigatórios
     Quando preencho todos os campos obrigatórios
     Então finalizo minha compra
 
-  Cenário: Não deve permitir campo e-mail com formato inválido. Sistema deve inserir uma mensagem de erro
+  Cenário: Ao tentar cadastrar email com formato inválido, deve exibir mensagem de erro
     Quando preencho meus dados
     E o campo e-mail está com um formato inválido
     Então meu cadastro não é efetuado
