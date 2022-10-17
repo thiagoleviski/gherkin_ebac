@@ -25,11 +25,11 @@ Para finalizar minha compra
     E uma mensagem de alerta é exibida
 
   Esquema do Cenário: Validação de cadastros inválidos
-    Quando preencho meus dados como o <email>
+    Quando preencho meus dados como <email>
     Então meu cadastro não é efetuado
-    E uma <mensagem> de erro é exibida
+    E uma mensagem de <alerta> é exibida
 
     Exemplos: 
-      | email              | mensagem                     |
-      | xxxx@@gmail.org.br | mensagem de erro é exibida   |
-      |                    | mensagem de alerta é exibida |
+      | email              | alerta                              |
+      | xxxx@@gmail.org.br | "Erro! E-mail com formato inválido" |
+      |                    | "Alerta! Preencha os campos vazios" |
